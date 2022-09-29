@@ -1,1 +1,1 @@
-# Intro-to-AI-for-Earth-Observation
+# EUMETSAT Course: AI applied to Earth Observation
