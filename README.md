@@ -4,7 +4,7 @@ This course is an introduction to Artificial Intelligence (AI), Machine Learning
 
 https://user-images.githubusercontent.com/33723271/193078794-41d574f6-84b4-4a84-b90b-b1acff3bc76a.mp4
 
-We course covered: 
+The course covered: 
 - A brif introduction to AI history
 - The main branches of machine learning: Supervised and Unsupervised Learning
 - Theory on the main algorithms used on supervised/unsupervised learning
