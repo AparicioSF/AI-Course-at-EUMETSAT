@@ -1,0 +1,183 @@
+// This exercice can be accessed at: https://code.earthengine.google.com/c5f6321229fb56c71bdc1c3b5ce544a7
+
+//+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+//S. Aparício (Solenix), I. Alonso (Solenix)  ☁☁☁\_(ツ)_/☁☁☁
+//MIT LICENSE CC BY EUMETSAT
+//+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+//🔥🛰️ 
+// Session 1 “Hands-on: Classification of fire burns"
+// PARTICIPANT'S VERSION
+
+///////////////////////////////////////////////////////////////////////////
+//////////////////////  1. VISUALIZING DEFINED AOI           ////////////////
+///////////////////////////////////////////////////////////////////////////
+//______________
+//_**STEP 1**___
+
+var AOI = // *your code
+//Visualise it
+// *your code
+
+///////////////////////////////////////////////////////////////////////////
+//////////////   2. PREPARING SATELLITE IMAGERY     /////////////////////////
+///////////////////////////////////////////////////////////////////////////
+//______________
+//_**STEP 2**___
+
+//Selecting date range - after the fire
+var start = //* your code
+var finish = //* your code
+
+//Selecting date range - before the fire
+var startpast = //* your code
+var finishpast = //* your code
+
+////////////// CREATING COLLECTION OF IMAGES///////////////////////////////
+//______________
+//_**STEP 3**___
+
+//Sentinel-2 collection after the fire
+var S2after = //* your code
+        
+//Sentinel-2 collection before the fire
+var S2before = //* your code
+
+////////////// CLOUD MASK FUNCTION ///////////////////////////////
+//______________
+//_**STEP 4**___
+
+
+//Cloud mask S2 function
+function maskS2clouds(image) {
+  var qa = image.select('QA60');
+
+  // Bits 10 and 11 are clouds and cirrus, respectively.
+  var cloudBitMask = ee.Number(2).pow(10).int();  //Math.pow(2,10)
+  var cirrusBitMask = ee.Number(2).pow(11).int(); //Math.pow(2,11)
+
+  // Both flags should be set to zero, indicating clear conditions.
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0).and(
+             qa.bitwiseAnd(cirrusBitMask).eq(0));
+
+  // Return the masked and scaled data.
+  return image.updateMask(mask); // add >>>> .divide(10000) >>>Diving by 10000 converts toa
+}
+
+
+/////////// APPLY CLOUD MASK FUNCTION TO ALL IMAGES IN THE COLLECTION///////////////////////////////
+//______________
+//_**STEP 5**___
+
+//Applying the function to remove clouds to all the collection
+var S2Acloudfree = //* your code
+var S2Bcloudfree = //* your code
+
+/////////// CREATE A SINGLE IMAGE ///////////////////////////////
+//______________
+//_**STEP 6**___
+
+//Creating a single image with the median of the collection
+var S2A = //* your code
+var S2B = //* your code
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////    VISUALIZING SATELLITE IMAGERY     /////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________
+//_**STEP 7**___
+
+//Creating visualization settings for false color
+var False_vis = {
+  min: 0,
+  max: 2500,
+  gamma: 1.4,
+  bands: ['B8', 'B4', 'B3']
+};
+
+//Creating visualization settings for true color
+var rgb_vis = {
+  min: 0,
+  max: 2500,
+  gamma: 0.89,
+  bands: ['B4', 'B3', 'B2']
+};
+
+
+Map.addLayer(S2A.clip(AOI), False_vis, 'S2 After Fire (False Color)')
+Map.addLayer(S2B.clip(AOI), False_vis, 'S2 Before Fire (False Color)')
+
+Map.addLayer(S2A.clip(AOI), rgb_vis, 'S2 After Fire (True Color)')
+Map.addLayer(S2B.clip(AOI), rgb_vis, 'S2 Before Fire (True Color)')
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////// CREATING TRAINING DATASET ////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________
+//_**STEP 8**___
+
+//collect more training data on geometry imports>burn/noburn and selecting on the map
+
+
+//combine the polygons from both classes
+var polygons = //**your code
+
+//selection of the bands to be used
+var bands = //**your code
+
+
+//______________
+//_**STEP 9**___
+//collecting training data
+var training = //**your code
+
+// Roughly 80% training, 20% testing.
+var split = 0.8;
+//Spliting with the split value after assigned random values
+var trainingRandom = training.randomColumn('random');
+
+var trainingSplit = trainingRandom.filter(ee.Filter.lt('random', split));    //for classification
+var testingSplit = trainingRandom.filter(ee.Filter.gte('random', split));    //for validation and accuracy
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////// TRAINING THE MODEL /////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________
+//_**STEP 10**___
+
+// Training classifiers with training (splited) data
+var trainedRF = //**your code
+
+
+/////////////////////////////////////////////////////////////
+////////////// RUN CLASSIFICATION  ///////////////////////////
+////////////////////////////////////////////////////////////
+//______________
+//_**STEP 11**___
+
+// Classify the Image with the same bands used for training.
+var classified   = //**your code
+
+
+
+/////////////////////////////////////////////////////////////
+////////////// vISUALIZE RESULTING CLASSIFICATION  /////////
+////////////////////////////////////////////////////////////
+//______________
+//_**STEP 12**___
+
+var visClassRFS1S2 = classified.visualize({
+                    min:0, 
+                    max:2, 
+                    palette: ['E6E600','A6FFE6']
+});
+
+
+Map.addLayer(classified.clip(AOI), {min: 0, max: 1, palette: ['green','red']}, 'RandomForest Burnt'); 
+
+/*
+
+var burnS2 = S2A.normalizedDifference(['B11', 'B8']);
+Map.addLayer(burnS2.clip(PT), {}, 'Burnt Radio ');
+
+*/
