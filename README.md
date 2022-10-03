@@ -9,5 +9,6 @@ The course covered:
 - Existing open source tools
 - How to build AI workflows
 - Hands on: classification, regression, clustering and image classification tasks.
+
 https://user-images.githubusercontent.com/33723271/193078794-41d574f6-84b4-4a84-b90b-b1acff3bc76a.mp4
 
