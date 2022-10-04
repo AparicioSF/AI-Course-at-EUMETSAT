@@ -22,3 +22,7 @@ Course promotion/trailer:
 
 https://user-images.githubusercontent.com/33723271/193078794-41d574f6-84b4-4a84-b90b-b1acff3bc76a.mp4
 
+----
+Course schedule:
+
+![timschedule](https://user-images.githubusercontent.com/33723271/193778579-8caedb95-edbc-4716-82a5-5cc28e31a5bc.png)
