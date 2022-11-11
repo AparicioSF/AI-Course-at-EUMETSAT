@@ -26,3 +26,7 @@ https://user-images.githubusercontent.com/33723271/193078794-41d574f6-84b4-4a84-
 Course schedule:
 
 ![timschedule](https://user-images.githubusercontent.com/33723271/193778579-8caedb95-edbc-4716-82a5-5cc28e31a5bc.png)
+
+----
+![logo](https://user-images.githubusercontent.com/33723271/201308563-bd56a5aa-05dc-46b0-85b2-b92e0ad5333d.png)
+
