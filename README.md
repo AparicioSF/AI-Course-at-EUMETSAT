@@ -29,5 +29,5 @@ Course schedule:
 
 ----
 
-![logo_cuj6gv_solenix](https://user-images.githubusercontent.com/33723271/201308677-ac60d13d-7d14-47d3-9ec7-0cf07021b7e5.jpg)
+![logo_cuj6gv_solenix](https://user-images.githubusercontent.com/33723271/201308677-ac60d13d-7d14-47d3-9ec7-0cf07021b7e5.jpg = 10x10)
 
