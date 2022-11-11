@@ -8,7 +8,7 @@ This course is an introduction to Artificial Intelligence (AI), Machine Learning
 ----
 
 The course covered: 
-- A brif introduction to AI history
+- A brief introduction to AI history
 - The main branches of machine learning: Supervised and Unsupervised Learning
 - Theory on the main algorithms used on supervised/unsupervised learning
 - Theory on Deep Learning (Multi layer perceptrons and CNN)
