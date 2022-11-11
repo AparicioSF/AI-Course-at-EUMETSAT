@@ -28,5 +28,7 @@ Course schedule:
 ![timschedule](https://user-images.githubusercontent.com/33723271/193778579-8caedb95-edbc-4716-82a5-5cc28e31a5bc.png)
 
 ----
-![logo_cuj6gv_solenix](https://user-images.githubusercontent.com/33723271/201310206-ecd1cffb-a0b9-4161-a8d7-3da8f236669e.jpg)
+![sssssss](https://user-images.githubusercontent.com/33723271/201310554-b801d343-dffa-47cb-b052-143de7eea4f9.jpg)
+
+
 
